@@ -2,45 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Basic Charts</title>
     <script src="https://cdn.plot.ly/plotly-2.20.0.min.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
 </head>
+
 <body>
-    <h1>{{name}}</h1>
 
-    <div id="plot"></div>
-    <script>
-        var data = {{petals|tojson|safe}};
-        console.log(data);
-       
-        var trace1 = {
-        x: data.length,
-        y: data.width,
-        mode: 'markers',
-        marker: {
-            size: [40, 60, 80, 100]
-        }
-        };
-
-        var data = [trace1];
-
-        var layout = {
-        title: 'Marker Size',
-        showlegend: false,
-        height: 600,
-        width: 600
-        };
-
-        Plotly.newPlot('plot', data, layout);
-
-        console.log(data)
-
-        
-
-    </script>
-
-  
-</body>
+        <h1>Flu Vaccination Dashboard</h1>
+        <p>Use the interactive charts below to explore the dataset</p>
+ 
+        <div class="row">
+          <div class="col-md-2">
+            <div class="well">
+              <h5>County:</h5>
+              <select id="countyDropDown" onchange="optionChanged(this.value)">
+                 <option>Select a County</option>
+                 <script src="./static/countyDropDown.js">
+                 </script>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div id="plot"></div>
+        <script>
+            let xData = [1, 2, 3, 4, 5];
+            let yData = [1, 2, 4, 8, 16];
+        </script> 
+        <!-- <script src="./static/data.js"></script> -->
+        <!-- <script src="./static/plots.js"></script> -->
+    </body>
+    </html> 
+</html> 

@@ -52,6 +52,16 @@ def dashboard():
 
     return render_template("dashboard.html")
 
+@app.route("/pie")
+def pie():
+
+    return render_template("pie.html")
+
+@app.route("/stackedbar")
+def stackedbar():
+
+    return render_template("stackedbar.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

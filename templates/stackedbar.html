@@ -1,0 +1,161 @@
+<!-- Courtesy of Chart JS Video Guides' Video: https://www.youtube.com/watch?v=ln-NKR2mBQY -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flu Vaccination Data</title>
+  </head>
+  <body>
+    <div class="well">
+      <h5>County:</h5>
+      <select id="selDataset">
+        <option value="Alameda">Alameda</option>
+        <option value="Alpine">Alpine</option>
+        <option value="Amador">Amador</option>
+        <option value="Butte">Butte</option>
+        <option value="Calaveras">Calaveras</option>
+        <option value="Colusa">Colusa</option>
+        <option value="Contra Costa">Contra Costa</option>
+        <option value="Del Norte">Del Norte</option>
+        <option value="El Dorado">El Dorado</option>
+        <option value="Fresno">Fresno</option>
+        <option value="Glenn">Glenn</option>
+        <option value="Humboldt">Humboldt</option>
+        <option value="Imperial">Imperial</option>
+        <option value="Inyo">Inyo</option>
+        <option value="Kern">Kern</option>
+        <option value="Kings">Kings</option>
+        <option value="Lake">Lake</option>
+        <option value="Lassen">Lassen</option>
+        <option value="Los Angeles">Los Angeles</option>
+        <option value="Madera">Madera</option>
+        <option value="Marin">Marin</option>
+        <option value="Mariposa">Mariposa</option>
+        <option value="Mendocino">Mendocino</option>
+        <option value="Merced">Merced</option>
+        <option value="Modoc">Modoc</option>
+        <option value="Mono">Mono</option>
+        <option value="Monterey">Monterey</option>
+        <option value="Napa">Napa</option>
+        <option value="Nevada">Nevada</option>
+        <option value="Orange">Orange</option>
+        <option value="Placer">Placer</option>
+        <option value="Plumas">Plumas</option>
+        <option value="Riverside">Riverside</option>
+        <option value="Sacramento">Sacramento</option>
+        <option value="San Benito">San Benito</option>
+        <option value="San Bernardino">San Bernardino</option>
+        <option value="San Diego">San Diego</option>
+        <option value="San Francisco">San Francisco</option>
+        <option value="San Joaquin">San Joaquin</option>
+        <option value="San Luis Obispo">San Luis Obispo</option>
+        <option value="San Mateo">San Mateo</option>
+        <option value="Santa Barbara">Santa Barbara</option>
+        <option value="Santa Clara">Santa Clara</option>
+        <option value="Santa Cruz">Santa Cruz</option>
+        <option value="Shasta">Shasta</option>
+        <option value="Sierra">Sierra</option>
+        <option value="Siskiyou">Siskiyou</option>
+        <option value="Solano">Solano</option>
+        <option value="Sonoma">Sonoma</option>
+        <option value="Stanislaus">Stanislaus</option>
+        <option value="Sutter">Sutter</option>
+        <option value="Tehama">Tehama</option>
+        <option value="Trinity">Trinity</option>
+        <option value="Tuolumne">Tuolumne</option>
+        <option value="Ventura">Ventura</option>
+        <option value="Yolo">Yolo</option>
+        <option value="Yuba">Yuba</option>
+        <option value="State of California">State of California</option>
+
+      </select> 
+      <!-- onchange="optionChanged(this.value)"></select>
+    </div> -->
+    <div style="height:1000px; width:1000px;" class="chartCard">
+      <div class="chartBox">
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-stacked100@1.0.0"></script>
+    <script>
+    Chart.register(ChartjsPluginStacked100.default);
+    
+    // setup 
+    const data = {
+      labels: ['Employee', 'Contract', 'LIPs', 'Student/Volunteer'],
+      datasets: [{
+        label: 'Vaccinated',
+        data: [807962, 29836, 538, 5907],
+        backgroundColor: [
+          'rgba(0, 128, 0, 0.2)'
+        ],
+        borderColor: [
+          'rgba(0, 128, 0, 1)'
+        ],
+        borderWidth: 1
+      },
+      {
+        label: 'Unvaccinated',
+        data: [140677, 4373, 87, 1418],
+        backgroundColor: [
+          'rgba(255, 0, 0, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 0, 0, 1)'
+        ],
+        borderWidth: 1
+      }]
+    };
+
+    // config 
+    const config = {
+      type: 'bar',
+      data,
+      options: {
+        plugins: {
+          stacked100: {
+            enable: true, //activates plugin
+            precision: 0
+          },
+          title: {
+            display: true,
+            text: 'Vaccination Rates by Employee Type'
+          },
+          maintainAspectRatio: false,
+          responsive: true
+        },
+        scales: {
+          x: {
+            display: true,
+            title: {
+              display: true,
+              text: "Employee Type"
+            }
+          },
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: "% Vaccinated"
+            }
+          }
+        }
+      }
+    };
+
+    // render init block
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+
+    // Instantly assign Chart.js version
+    const chartVersion = document.getElementById('chartVersion');
+    chartVersion.innerText = Chart.version;
+    </script>
+
+  </body>
+</html>
